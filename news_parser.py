@@ -55,6 +55,23 @@ for description_alj in header_alj:
         print("******************************")
 
 
+#BBC
+url_bbc = "https://www.bbc.com/news/world"
+request = requests.get(url_bbc)
+
+soup_bbc = BeautifulSoup(request.text, "html.parser")
+
+header_bbc = soup_bbc.find_all("div", class_="gs-c-promo-body")
+
+for description_bbc in header_bbc:
+    description_bbc = description_bbc.find("a", {'class': 'gs-c-promo-heading'})
+
+    if description_bbc is not None:
+        link_bbc = description_bbc.get('href')
+        print(str(description_bbc.text) + " \n" + str("https://www.bbc.com"+link_bbc))
+        print("******************************")
+
+
 
 
 
