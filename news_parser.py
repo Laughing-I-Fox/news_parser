@@ -38,6 +38,21 @@ for description_nyt in header_nyt:
         print(str(description_nyt.text) + " \n" + str("https://www.nytimes.com/"+link_nyt))
         print("******************************")
 
+#Aljazeera
+url_alj = "https://www.aljazeera.com/europe/"
+request = requests.get(url_alj)
+
+soup_alj = BeautifulSoup(request.text, "html.parser")
+
+header_alj = soup_alj.find_all("article", class_="gc")
+
+for description_alj in header_alj:
+    description_alj = description_alj.find("div", {'class': 'gc__header-wrap'}).find('a')
+
+    if description_alj is not None:
+        link_alj = description_alj.get('href')
+        print(str(description_alj.text) + " \n" + str("https://www.aljazeera.com"+link_alj))
+        print("******************************")
 
 
 
