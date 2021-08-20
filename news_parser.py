@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import colorama
 
 # CBC
 url_cbc = "https://www.cbc.ca/news/world"
@@ -20,8 +21,9 @@ for description_cbc in header_cbc:
 
     if description_cbc is not None:
         link_cbc = description_cbc.get('href')
-        print(str(description_cbc.text) + " \n" + str("https://www.cbc.ca" + link_cbc))
-        print("******************************")
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_cbc.text) + " \n" + (
+            str("https://www.cbc.ca" + link_cbc)))
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # NYT
 url_nyt = "https://www.nytimes.com/section/world"
@@ -32,13 +34,15 @@ soup_nyt = BeautifulSoup(request.text, "html.parser")
 
 header_nyt = soup_nyt.find_all("li", class_="css-ye6x8s")
 
+
 for description_nyt in header_nyt:
     description_nyt = description_nyt.find("div", {'class': 'css-1l4spti'}).find('a')
 
     if description_nyt is not None:
         link_nyt = description_nyt.get('href')
-        print(str(description_nyt.text) + " \n" + str("https://www.nytimes.com/" + link_nyt))
-        print("******************************")
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_nyt.text) + " \n" + (
+            str("https://www.nytimes.com/" + link_nyt)))
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # Aljazeera
 url_alj = "https://www.aljazeera.com/europe/"
@@ -53,8 +57,9 @@ for description_alj in header_alj:
 
     if description_alj is not None:
         link_alj = description_alj.get('href')
-        print(str(description_alj.text) + " \n" + str("https://www.aljazeera.com" + link_alj))
-        print("******************************")
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_alj.text) + " \n" + (
+            str("https://www.aljazeera.com" + link_alj)))
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # BBC
 url_bbc = "https://www.bbc.com/news/world"
@@ -69,5 +74,6 @@ for description_bbc in header_bbc:
 
     if description_bbc is not None:
         link_bbc = description_bbc.get('href')
-        print(str(description_bbc.text) + " \n" + str("https://www.bbc.com" + link_bbc))
-        print("******************************")
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_bbc.text) + " \n" + (
+            str("https://www.bbc.com" + link_bbc)))
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
