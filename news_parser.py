@@ -1,14 +1,23 @@
 from bs4 import BeautifulSoup
 import requests
 import colorama
-
-# CBC
-url_cbc = "https://www.cbc.ca/news/world"
+import googletrans
+from googletrans import Translator
+######################################
 
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0'
 }
+
+translator = Translator()
+
+#####################################
+
+# CBC
+print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
+print("CBC:")
+url_cbc = "https://www.cbc.ca/news/world"
 
 request = requests.get(url_cbc, headers=HEADERS)
 
@@ -26,6 +35,7 @@ for description_cbc in header_cbc:
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # NYT
+print("The New York Times:")
 url_nyt = "https://www.nytimes.com/section/world"
 
 request = requests.get(url_nyt, headers=HEADERS)
@@ -40,11 +50,12 @@ for description_nyt in header_nyt:
 
     if description_nyt is not None:
         link_nyt = description_nyt.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_nyt.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_nyt.text) + " \n" + (
             str("https://www.nytimes.com/" + link_nyt)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # Aljazeera
+print("Aljazeera:")
 url_alj = "https://www.aljazeera.com/europe/"
 request = requests.get(url_alj, headers=HEADERS)
 
@@ -57,23 +68,24 @@ for description_alj in header_alj:
 
     if description_alj is not None:
         link_alj = description_alj.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_alj.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_alj.text) + " \n" + (
             str("https://www.aljazeera.com" + link_alj)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
 # BBC
+print("BBC:")
 url_bbc = "https://www.bbc.com/news/world"
 request = requests.get(url_bbc, headers=HEADERS)
 
 soup_bbc = BeautifulSoup(request.text, "html.parser")
 
-header_bbc = soup_bbc.find_all("div", class_="gs-c-promo-body")
+header_bbc = soup_bbc.find_all("div", {'class': 'gel-wrap'})
 
 for description_bbc in header_bbc:
     description_bbc = description_bbc.find("a", {'class': 'gs-c-promo-heading'})
 
     if description_bbc is not None:
         link_bbc = description_bbc.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_bbc.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_bbc.text) + " \n" + (
             str("https://www.bbc.com" + link_bbc)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
