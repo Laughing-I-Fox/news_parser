@@ -1,12 +1,15 @@
 from bs4 import BeautifulSoup
 import requests
 
-
-
-
-#CBC
+# CBC
 url_cbc = "https://www.cbc.ca/news/world"
-request = requests.get(url_cbc)
+
+HEADERS = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0'
+}
+
+request = requests.get(url_cbc, headers=HEADERS)
 
 soup_cbc = BeautifulSoup(request.text, "html.parser")
 
@@ -17,14 +20,13 @@ for description_cbc in header_cbc:
 
     if description_cbc is not None:
         link_cbc = description_cbc.get('href')
+        print(str(description_cbc.text) + " \n" + str("https://www.cbc.ca" + link_cbc))
+        print("******************************")
 
-    print(str(description_cbc.text) + " \n" + str("https://www.cbc.ca"+link_cbc))
-    print("******************************")
-
-
-#NYT
+# NYT
 url_nyt = "https://www.nytimes.com/section/world"
-request = requests.get(url_nyt)
+
+request = requests.get(url_nyt, headers=HEADERS)
 
 soup_nyt = BeautifulSoup(request.text, "html.parser")
 
@@ -35,12 +37,12 @@ for description_nyt in header_nyt:
 
     if description_nyt is not None:
         link_nyt = description_nyt.get('href')
-        print(str(description_nyt.text) + " \n" + str("https://www.nytimes.com/"+link_nyt))
+        print(str(description_nyt.text) + " \n" + str("https://www.nytimes.com/" + link_nyt))
         print("******************************")
 
-#Aljazeera
+# Aljazeera
 url_alj = "https://www.aljazeera.com/europe/"
-request = requests.get(url_alj)
+request = requests.get(url_alj, headers=HEADERS)
 
 soup_alj = BeautifulSoup(request.text, "html.parser")
 
@@ -51,13 +53,12 @@ for description_alj in header_alj:
 
     if description_alj is not None:
         link_alj = description_alj.get('href')
-        print(str(description_alj.text) + " \n" + str("https://www.aljazeera.com"+link_alj))
+        print(str(description_alj.text) + " \n" + str("https://www.aljazeera.com" + link_alj))
         print("******************************")
 
-
-#BBC
+# BBC
 url_bbc = "https://www.bbc.com/news/world"
-request = requests.get(url_bbc)
+request = requests.get(url_bbc, headers=HEADERS)
 
 soup_bbc = BeautifulSoup(request.text, "html.parser")
 
@@ -68,20 +69,5 @@ for description_bbc in header_bbc:
 
     if description_bbc is not None:
         link_bbc = description_bbc.get('href')
-        print(str(description_bbc.text) + " \n" + str("https://www.bbc.com"+link_bbc))
+        print(str(description_bbc.text) + " \n" + str("https://www.bbc.com" + link_bbc))
         print("******************************")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
