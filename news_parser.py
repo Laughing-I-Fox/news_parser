@@ -1,17 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 import colorama
-import googletrans
-from googletrans import Translator
 ######################################
-
 HEADERS = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0'
 }
-
-translator = Translator()
-
 #####################################
 
 # CBC
@@ -30,7 +24,7 @@ for description_cbc in header_cbc:
 
     if description_cbc is not None:
         link_cbc = description_cbc.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + str(description_cbc.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + description_cbc.text + " \n" + (
             str("https://www.cbc.ca" + link_cbc)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
@@ -50,7 +44,7 @@ for description_nyt in header_nyt:
 
     if description_nyt is not None:
         link_nyt = description_nyt.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_nyt.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + description_nyt.text + " \n" + (
             str("https://www.nytimes.com/" + link_nyt)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
@@ -68,7 +62,7 @@ for description_alj in header_alj:
 
     if description_alj is not None:
         link_alj = description_alj.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_alj.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + description_alj.text + " \n" + (
             str("https://www.aljazeera.com" + link_alj)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
 
@@ -86,6 +80,6 @@ for description_bbc in header_bbc:
 
     if description_bbc is not None:
         link_bbc = description_bbc.get('href')
-        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + (description_bbc.text) + " \n" + (
+        print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.CYAN + description_bbc.text + " \n" + (
             str("https://www.bbc.com" + link_bbc)))
         print(colorama.Style.BRIGHT + colorama.Back.BLACK + colorama.Fore.YELLOW + "******************************")
