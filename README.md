@@ -1,2 +1,3 @@
 # news_parser
-News parser at python to collect top news from world fine souses. 
+A python news parser for collecting top news from trusted sources. 
+CBC, New York Times, Aljazeera, BBC.
